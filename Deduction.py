@@ -35,7 +35,7 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(check_proof):
+def _(mo):
     q1 = """
     1. AxP(x) | Q(y)     pre
     2. { a
@@ -50,9 +50,14 @@ def _(check_proof):
     }
     9. Ax(P(x) | Q(y)) Ai 2-8
     """
-    print(q1)
-    print(check_proof(q1, display_fitch=False, display_gentzen=False))
+    mo.md(q1)
     return (q1,)
+
+
+@app.cell(hide_code=True)
+def _(check_proof, mo, q1):
+    mo.md(check_proof(q1, display_fitch=False, display_gentzen=False))
+    return
 
 
 @app.cell(hide_code=True)
@@ -68,7 +73,7 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(check_proof):
+def _(mo):
     q2 = """
     1. Ax(P(x) | Q(y))     pre
     2. { ~(AxP(x) | Q(y))  hip
@@ -92,9 +97,15 @@ def _(check_proof):
        }
     17. AxP(x) | Q(y)      raa 2-16
     """
-    print(q2)
-    print(check_proof(q2, display_fitch=False, display_gentzen=False))
+    mo.md(q2)
+
     return (q2,)
+
+
+@app.cell
+def _(check_proof, mo, q2):
+    mo.md(check_proof(q2, display_fitch=False, display_gentzen=False))
+    return
 
 
 if __name__ == "__main__":
