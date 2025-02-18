@@ -18,7 +18,7 @@ def _():
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""## Lista de Dedução Natural """)
+    mo.md(r"""## Lista de Dedução Natural""")
     return
 
 
@@ -34,7 +34,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(check_proof):
     q1 = """
     1. AxP(x) | Q(y)     pre
@@ -50,7 +50,8 @@ def _(check_proof):
     }
     9. Ax(P(x) | Q(y)) Ai 2-8
     """
-    check_proof(q1, display_fitch=False, display_gentzen=False)
+    print(q1)
+    print(check_proof(q1, display_fitch=False, display_gentzen=False))
     return (q1,)
 
 
@@ -66,7 +67,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(check_proof):
     q2 = """
     1. Ax(P(x) | Q(y))     pre
@@ -91,7 +92,8 @@ def _(check_proof):
        }
     17. AxP(x) | Q(y)      raa 2-16
     """
-    check_proof(q2, display_fitch=False, display_gentzen=False)
+    print(q2)
+    print(check_proof(q2, display_fitch=False, display_gentzen=False))
     return (q2,)
 
 
