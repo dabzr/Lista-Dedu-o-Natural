@@ -188,5 +188,236 @@ def _(check_proof, mo, q4):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+        Questão 5
+
+        ∃x(P(x) ∧ Q(z)) ⊢ ∃xP(x) ∧ Q(z)
+        """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    q5 = """
+    1. Ex(P(x) & Q(z))     pre
+    2. { a P(a) & Q(z)     hip
+    3.   P(a)              &e 2
+    4.   ExP(x)            Ei 3
+    5.   Q(z)              &e 2
+    6.   ExP(x) & Q(z)     &i 4, 5
+       }
+    7. ExP(x) & Q(z)       Ee 1, 2-6
+    """
+    mo.show_code()
+    return (q5,)
+
+
+@app.cell(hide_code=True)
+def _(check_proof, mo, q5):
+    mo.md(check_proof(q5, display_fitch=False, display_gentzen=False))
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+        Questão 6
+
+        ∃xP(x) ∧ Q(z) ⊢ ∃x(P(x) ∧ Q(z))
+        """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    q6 = """
+    1. ExP(x) & Q(z)     pre
+    2. ExP(x)            &e 1
+    3. { a P(a)          hip
+    4.   Q(z)            &e 1
+    5.   P(a) & Q(z)     &i 3, 4
+    6.   Ex(P(x) & Q(z)) Ei 5
+       }
+    7. Ex(P(x) & Q(z))   Ee 2, 3-6
+    """
+    mo.show_code()
+    return (q6,)
+
+
+@app.cell(hide_code=True)
+def _(check_proof, mo, q6):
+    mo.md(check_proof(q6, display_fitch=False, display_gentzen=False))
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+        Questão 7
+
+        Q(y) → ∀xP(x) ⊢ ∀x(Q(y) → P(x))
+        """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    q7 = """
+    1. Q(y) -> AxP(x)    pre
+    2. { a
+    3.   { Q(y)          hip
+    4.     AxP(x)        ->e 1, 3
+    5.     P(a)          Ae 4
+         }
+    6.   Q(y) -> P(a)    ->i 3-5
+        }
+    7.  Ax(Q(y) -> P(x)) Ai 2-6
+    """
+    mo.show_code()
+    return (q7,)
+
+
+@app.cell(hide_code=True)
+def _(check_proof, mo, q7):
+    mo.md(check_proof(q7, display_fitch=False, display_gentzen=False))
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+        Questão 8
+
+        ∀x(Q(y) → P(x)) ⊢ Q(y) → ∀xP(x)
+        """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    q8 = """
+    1. Ax(Q(y) -> P(x))    pre
+    2. {  Q(y)             hip
+    3.    { a
+    4.      Q(y) -> P(a)   Ae 1
+    5.      P(a)           ->e 2,4
+          }
+    6.    AxP(x)           Ai 3-5
+       }
+    7. Q(y) -> AxP(x)      ->i 2-6
+    """
+    mo.show_code()
+    return (q8,)
+
+
+@app.cell(hide_code=True)
+def _(check_proof, mo, q8):
+    mo.md(check_proof(q8, display_fitch=False, display_gentzen=False))
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+        Questão 9
+
+        ∀xP(x) → Q(y) ⊢ ∃x(P(x) → Q(y))
+        """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    q9 = """ 
+    1. AxP(x) -> Q(y)                    pre
+    2. { ~(Ex(P(x) -> Q(y)))             hip
+    }
+    """
+    mo.show_code()
+    return (q9,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+        Questão 10
+
+        ∃x(P(x) → Q(y)) ⊢ ∀xP(x) → Q(y)
+        """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    q10 = """
+    1. Ex(P(x) -> Q(y))         pre
+    2. { a P(a)->Q(y)           hip
+    3.   {  Ax P(x)             hip
+    4.      P(a)                Ae 3
+    5.      Q(y)                ->e 2,4
+         }
+    6.   AxP(x) -> Q(y)         ->i 3-5
+       }
+    7. AxP(x) -> Q(y)           Ee  1, 2-6
+    """
+    mo.show_code()
+    return (q10,)
+
+
+@app.cell(hide_code=True)
+def _(check_proof, mo, q10):
+    mo.md(check_proof(q10, display_fitch=False, display_gentzen=False))
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+        Questão 11
+
+        ∀x(P(x) → Q(y)) ⊢ ∃xP(x) → Q(y)
+        """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    q11 = """
+    1. Ax(P(x) -> Q(y))   pre
+    2. { ExP(x)           hip
+    3.   { a P(a)         hip
+    4.     P(a) -> Q(y)   Ae 1
+    5.     Q(y)           ->e 3,4
+         }
+    6.   Q(y)             Ee 2, 3-5
+       }
+    7. ExP(x) -> Q(y)     ->i 2-6
+    """
+    mo.show_code()
+    return (q11,)
+
+
+@app.cell(hide_code=True)
+def _(check_proof, mo, q11):
+    mo.md(check_proof(q11, display_fitch=False, display_gentzen=False))
+    return
+
+
 if __name__ == "__main__":
     app.run()
